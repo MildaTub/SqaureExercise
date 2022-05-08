@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.Points.PointsController.AddSquarePoint(Points.Models.PointModel)">
+            <summary>
+            Deletes a specific TodoItem.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.Points.PointsController.AddSquarePoints(System.Collections.Generic.List{Points.Models.PointModel})">
+            <summary>
+            Deletes a specific TodoItem.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.Points.PointsController.DeleteSquarePoint(System.Int32)">
+            <summary>
+            Deletes a specific TodoItem.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.Points.PointsController.GetSquares">
+            <summary>
+            Deletes a specific TodoItem.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
