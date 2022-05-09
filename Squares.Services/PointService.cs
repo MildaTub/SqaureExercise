@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Points.DataAccess;
 using Points.Models;
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Points.Services
@@ -25,7 +24,7 @@ namespace Points.Services
         {
             if (model == null)
             {
-                throw new ValidationException("model can not be null");
+                throw new ValidationException("At least one point must be assigned");
             }
 
             var point = new Point()
@@ -40,6 +39,11 @@ namespace Points.Services
         }
         public async Task AddSquarePoints(List<PointModel> pointsModel)
         {
+            if (pointsModel == null)
+            {
+                throw new ValidationException("At least one point must be assigned");
+            }
+
             var pointList = new List<Point>();
 
             foreach (var pointItem in pointsModel)
@@ -65,7 +69,7 @@ namespace Points.Services
             var point = await pointsContext.Points
                 .Where(x => x.Id == pointId)
                 .FirstOrDefaultAsync() ??
-                throw new ValidationException("The point does not exist");
+                throw new ValidationException("The provided point id does not exist");
 
             pointsContext.Points.Remove(point);
             await pointsContext.SaveChangesAsync();
@@ -74,7 +78,7 @@ namespace Points.Services
         {
             var points = await pointsContext.Points
                 .ToListAsync() ??
-                 throw new ValidationException("Please create at least 4 points");
+                 throw new ValidationException("No points found");
 
             var pointsModel = new List<PointModel>();
             foreach (var pointItem in points)
@@ -94,7 +98,7 @@ namespace Points.Services
         private static List<SquareModel> CalculateSquaresFromPoints(List<PointModel> points)
         {
             Dictionary<(int, int), int> pointDictionary = new();
-            List<SquareModel> list = new();
+            List<SquareModel> pointList = new();
 
             foreach (var point in points)
             {
@@ -112,11 +116,16 @@ namespace Points.Services
                 
                 if (squareModel != null)
                 {
-                    list.Add(squareModel);
+                    pointList.Add(squareModel);
                 }
             }
 
-            return list;
+            if (!pointList.Any())
+            {
+                throw new ValidationException("From the provided points non squares exist. Please add correct points");
+            }
+
+            return pointList;
         }
 
         public static SquareModel? FindPoints(Dictionary<(int, int), int> pointDictionary, int pointX, int pointY)

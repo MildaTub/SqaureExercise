@@ -1,5 +1,4 @@
-﻿
-namespace Points.Models
+﻿namespace Points.Models
 {
     public class SquareModel
     {

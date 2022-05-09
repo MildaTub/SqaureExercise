@@ -6,7 +6,6 @@ using Routes = Constants.ApiRoutes.Points;
 
 namespace API.Controllers.Points
 {
-   
     [ApiController]
     [Route(Routes.Points.BasePath)]
     public class PointsController : ControllerBase
@@ -61,7 +60,7 @@ namespace API.Controllers.Points
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet(Routes.Points.Squares.Action.GetSquares)]
+        [HttpGet(Routes.Points.BaseGetSquaresPath)]
         [ProducesResponseTypeAttribute((int)HttpStatusCode.OK)]
         public async Task<ActionResult<List<SquareModel>>> GetSquares()
         {

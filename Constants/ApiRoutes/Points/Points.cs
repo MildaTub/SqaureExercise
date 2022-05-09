@@ -4,16 +4,6 @@
     {
         public const string BasePath = "points";
 
-        public static class Squares
-        {
-            public const string BasePath = Points.BasePath + "/squares";
-
-            public static class Action
-            {
-                public const string GetSquares = Squares.BasePath + "/" + Actions.GetSquares;
-            }
-        }
-
         public static class Actions
         {
             public const string AddPoint = "add-point";
@@ -25,6 +15,6 @@
         public const string BaseAddPointPath = Actions.AddPoint;
         public const string BaseAddPointsPath = Actions.AddPoints;
         public const string BaseDeletePointPath = Actions.DeletePoint;
+        public const string BaseGetSquaresPath = Actions.GetSquares;
     }
 }
-
